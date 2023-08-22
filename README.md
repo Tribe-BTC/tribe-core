@@ -1,1 +1,1 @@
-# tribe-core
+# Tribe Core
