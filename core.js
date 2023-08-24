@@ -1,4 +1,6 @@
-var $ = document.querySelector.bind( document );
+
+        <script>
+            var $ = document.querySelector.bind( document );
             var $$ = document.querySelectorAll.bind( document );
             var url_params = new URLSearchParams( window.location.search );
             var url_keys = url_params.keys();
@@ -50,21 +52,26 @@ var $ = document.querySelector.bind( document );
                 var multisig = null;
             }
             function addXverse( element ) {
-                if ( $$ ('.select_psbt).length >=67 ) {
-                    showModal ("max number of kkeys for the PSBT is 67)";
+                if ( $$ ('.select_psbt').length >=67 ) {
+                    showModal ("max number of keys for the PSBT is 67");
                 return;
             }
             function addBitpack( element) {
-                if ( $$ ('.select_psbt).length >=67 ) {
-                    showModal ("max number of kkeys for the PSBT is 67");
+                if ( $$ ('.select_psbt').length >=67 ) {
+                    showModal ("max number of keys for the PSBT is 67");
                 return;
+            }
             function addNpub( element ) {
                 if ( $$( '.select_npub' ).length >= 67 ) {
-                    showModal( "max number of keys for the multisig is 67" );
+                    showModal( "max number of keys for the multisig is 67");
                     return;
                 }
                 if ( element && $$( '.select_npub' ).length < 67 ) {
                     element.previousElementSibling.style.display = "inline-block";
+
+                if ( element && $$( 'select_psbt'). length < 67 ) {
+                element.previousElementSibling.style.display = "inline-block";
+                    
                 }
                 if ( $( '.plus_button' ) ) {
                     $( '.plus_button' ).remove();
@@ -76,26 +83,28 @@ var $ = document.querySelector.bind( document );
                 input.onchange = (i) => {
                     var npub = i.srcElement.value;
                     var identifier = i.srcElement.classList[ 1 ].substring( 5 );
-                    if ( getting_info_for.includes( JSON.stringify( [ npub, identifier ] ) ) ) return;
-                    getting_info_for.push( JSON.stringify( [ npub, identifier ] ) );
-                    getCounterpartyInfo( npub, identifier );
+                    if ( getting_info_for.includes( JSON.stringify( [ npub, identifier, ordinals ] ) ) ) return;
+                    getting_info_for.push( JSON.stringify( [ npub, identifie, ordinals, inscriptions] ) );
+                    getCounterpartyInfo( npub, identifier, ordinals, inscriptions );
                 }
                 input.onkeyup = (i) => {
                     var npub = i.srcElement.value;
                     var identifier = i.srcElement.classList[ 1 ].substring( 5 );
-                    if ( getting_info_for.includes( JSON.stringify( [ npub, identifier ] ) ) ) return;
-                    getting_info_for.push( JSON.stringify( [ npub, identifier ] ) );
-                    getCounterpartyInfo( npub, identifier );
+                    if ( getting_info_for.includes( JSON.stringify( [ npub, identifier, ordinals, inscriptins ] ) ) ) return;
+                    getting_info_for.push( JSON.stringify( [ npub, identifier, ordinals, inscriptions ] ) );
+                    getCounterpartyInfo( npub, identifier , ordinals);
                 }
                 $( '.select_npubs' ).append( input );
                 var minus = document.createElement( "div" );
                 minus.className = "minus_button";
                 minus.setAttribute( "data-identifier", identifier );
+                minus.setAttribute( "data-ordinals", ordinals);
+                minus.setAttribute( "deta-inscriptions", inscriptions);
                 minus.innerText = "-";
                 minus.onclick = function() {
                     this.previousElementSibling.remove();
                     this.remove();
-                    $( `.profile_${this.getAttribute( "data-identifier" )}` ).remove();
+                    $( `.profile_${this.getAttribute( "data-identifier", "ordinals" )}` ).remove();
                     $( '.multisig_num' ).innerText = $$( '.select_npub' ).length;
                     if ( Number( $( '.select_threshold' ).value ) > $$( '.select_npub' ).length ) $( '.select_threshold' ).value = $$( '.select_npub' ).length;
                     $( '.threshold_num' ).innerText = $( '.select_threshold' ).value;
@@ -131,6 +140,9 @@ var $ = document.querySelector.bind( document );
                 sessionStorage[ "npub" ] = npub;
                 sessionStorage[ "ordinals"] = ordinals;
                 sessionStorage[ "PSBTs"] = psbts;
+                sessionStorage[ "inscritpions" ] = inscriptions;
+                sessionStorage[ "role" ] = role;
+                sessionStorage[ "name" ] = name;
                 
                 $$( '.profile' ).forEach( item => {
                     setTimeout( () => {
