@@ -2,7 +2,7 @@
 
 Tribe Core is the open source fundamental tech behind Tribe and bitpacs
 
-## How works?.
+## How Tribe works?.
 
 Tribe will offer bitpacs based on several inputs, including NOSTR npubs, btc wallet addresses, and ordinals assets held. Using NOSTR for example:
 
