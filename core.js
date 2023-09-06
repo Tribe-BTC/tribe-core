@@ -235,71 +235,6 @@ var $ = document.querySelector.bind( document );
                     a.append( createQR( url ) );
                     var div = document.createElement( "div" );
                     div.append( a );
-                    var div_html = div.innerHTML;
-                    var html = `
-                        <div class="menu" onclick='if ( window.innerWidth > 600 ) return; if ( this.getElementsByClassName( "menu_internal" )[ 0 ].style.display != "block" ) {this.getElementsByClassName( "menu_internal" )[ 0 ].style.display = "block"} else {this.getElementsByClassName( "menu_internal" )[ 0 ].style.display = "none"}'>
-                            <div class="menu_items">
-                                <div class="menu_internal">
-                                    <div class="menu_members">Members</div>
-                                    <div class="menu_balance">Treasury</div>
-                                    <div class="menu_statements">Statements</div>
-                                    <div class="menu_cprops">Current proposals [<span class="cprops">0</span>]</div>
-                                    <div class="menu_pprops">Past proposals [<span class="pprops">0</span>]</div>
-                                    <div class="menu_login_or_create">Login</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="members">
-                            <h2>Members</h2>
-                            Bitpac name: ${bitpac_name}<br>
-                            Policy: ${threshold} out of ${temp_multisig.length}
-                        <div class="nostr_profiles">
-                            <p class="loading_profiles">Loading<span class="dots">.</span></p>
-                        </div>
-                        </div>
-                        <div class="balance">
-                            <h2>Treasury</h2>
-                            Balance (usd): <span class="bitpac_balance">loading<span class="dots">.</span></span><br>
-                            Balance (sats): <span class="bitpac_balance_sats">loading<span class="dots">.</span></span><br>
-                            <div class="qr_div">
-                                ${div_html}
-                                <div class="addy">${multisig_address}</div><br>
-                            </div>
-                        </div>
-                        <div class="statements">
-                            <h2>Statements</h2>
-                            <p class="no_statements">Loading<span class="dots">.</span></p>
-                        </div>
-                        <div class="current_proposals">
-                            <h2>Current proposals</h2>
-                            <p class="none_currently">Loading<span class="dots">.</span></p>
-                        </div>
-                        <div class="past_proposals">
-                            <h2>Past proposals</h2>
-                            <p class="no_past_proposals">Loading<span class="dots">.</span></p>
-                        </div>
-                        <div class="crafter">
-                            <h2>Craft a proposal</h2>
-                            <p>Briefly name or describe your proposal</p>
-                            <p><input class="proposal_desc"></p>
-                            <p>Propose a statement (optional)</p>
-                            <p><textarea class="statement"></textarea></p>
-                            <p class="will_spend_parent" onclick='if ( $( ".spend_info" ).style.display != "block" ) {$( ".spend_info" ).style.display = "block";$( ".will_spend" ).checked = true;} else {$( ".spend_info" ).style.display = "none";$( ".will_spend" ).checked = false;}'>
-                                <input type="checkbox" class="will_spend" name="will_spend">
-                                <label for="will_spend">I want to spend some money</label>
-                            </p>
-                            <div class="spend_info">
-                                <p>How do you want to spend the money?</p>
-                                Balance (usd): <span class="bitpac_balance">loading<span class="dots">.</span></span><br>
-                                Balance (sats): <span class="bitpac_balance_sats">loading<span class="dots">.</span></span>
-                                <br><br>
-                                <div class="add_outputs"></div>
-                            </div>
-                            <p><button class="craft_proposal">Submit</button></p>
-                        </div>
-                    `;
-                    var div = document.createElement( "div" );
-                    div.innerHTML = html;
                     $( '.loading' ).remove();
                     $( '.multisig_viewer' ).append( div );
                     $( '.menu_members' ).onclick = () => {
@@ -388,9 +323,7 @@ var $ = document.querySelector.bind( document );
                         <div class="proposal_statement"></div>
                     `;
                     var div = document.createElement( "div" );
-                    div.innerHTML = html;
                     div.className = `proposal_div proposal_${event.id}`;
-                    div.style = "border: 1px solid black; border-radius: 1rem; padding: 1rem;"
                     div.getElementsByClassName( "proposal_name" )[ 0 ].innerText = proposal[ 0 ];
                     if ( proposal[ 3 ] ) {
                         div.getElementsByClassName( "proposal_statement" )[ 0 ].innerText = proposal[ 3 ];
@@ -1322,7 +1255,7 @@ var $ = document.querySelector.bind( document );
                             "tags"       : [],
                             "pubkey"     : pubKey,
                             "ordinals'   : ordinals,
-                            "psbt"       : psbt
+                            "psbt"       : psbt,
                         }
                         var signedEvent = await getSignedEvent(event, privKey);
                         var note_id = signedEvent.id;
