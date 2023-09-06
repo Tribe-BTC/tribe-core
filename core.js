@@ -1,20 +1,21 @@
+//modules used on Core
+const bitcoin = require('bitcoinjs-lib');
+const nostr = require('nostr-tools');
+const satsconncet = require('sats-connect');
 
-        <script>
-            var $ = document.querySelector.bind( document );
+var $ = document.querySelector.bind( document );
             var $$ = document.querySelectorAll.bind( document );
             var url_params = new URLSearchParams( window.location.search );
             var url_keys = url_params.keys();
             var $_GET = {}
             for ( var key of url_keys ) $_GET[ key ] = url_params.get( key );
-        </script>
-        <script>
+        
             if ( !window.location.href.includes( "index.htm" ) ) {
                 var url = "https://" + window.location.hostname + "/onboard.html";
                 if ( $_GET[ "network" ] ) url += "?network=" + $_GET[ "network" ];
                 window.location.href = url;
             }
-        </script>
-        <script>
+       
             var mempoolnet = "testnet"; //the full word: mainnet | testnet (works for signet too) | regtest
             var mempoolNetwork = ""; //testnet: "" | signet: "signet/"
             if ( $_GET[ "network" ] == "testnet" ) {
