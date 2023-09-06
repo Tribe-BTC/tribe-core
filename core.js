@@ -815,6 +815,7 @@ var $ = document.querySelector.bind( document );
                     event['kind'],      // Message “kind” or type
                     event['tags'],      // Tags identify replies/recipients
                     event['content']        // Your note contents
+            
                 ])
                 event.id  = sha256( eventData ).toString( 'hex' );
                 event.sig = await schnorr.sign( event.id, privateKey );
@@ -1276,29 +1277,6 @@ var $ = document.querySelector.bind( document );
                 var data = await getData( `https://mempool.space/${mempoolNetwork}api/tx/${txid}` );
                 if ( data != "Transaction not found" ) return true;
             }
-        </script>
-    </head>
-    <body>
-        <h1>Welcome to bitpac</h1>
-        <div class="multisig_creator">
-            <p>
-                A bitpac is a publicly auditable cooperative that lives on bitcoin. Use this form to create a bitpac so that you and the other members of your cooperative can control some money and vote on how to spend it.
-            </p>
-            <p>Name your bitpac</p>
-            <input class="bitpac_name">
-            <p>Enter an npub for everyone in your bitpac</p>
-            <div class="select_npubs">
-            </div>
-            <p>Pick how many votes are needed to spend the money</p>
-            <input class="select_threshold" type="number" value="1" min="1" step="1" max="74">
-            <p>Your policy so far: <span class="threshold_num">1</span> out of <span class="multisig_num">1</span></p>
-            <div class="nostr_profiles"></div>
-            <button class="create_bitpac">Submit</button>
-        </div>
-        <div class="multisig_viewer">
-            <div class="loading">Loading<span class="dots">.</span></div>
-        </div>
-        <script>
             var init = async () => {
                 dotLoop( "." );
                 if ( !$_GET[ "multisig" ] ) {
@@ -1344,6 +1322,8 @@ var $ = document.querySelector.bind( document );
                             "kind"       : 2858,
                             "tags"       : [],
                             "pubkey"     : pubKey,
+                            "ordinals'   : ordinals,
+                            "psbt"       : psbt
                         }
                         var signedEvent = await getSignedEvent(event, privKey);
                         var note_id = signedEvent.id;
