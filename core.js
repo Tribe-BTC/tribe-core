@@ -1,7 +1,6 @@
 //modules used on Core
 const bitcoin = require('bitcoinjs-lib');
 const nostr = require('nostr-tools');
-const satsconncet = require('sats-connect');
 
 var $ = document.querySelector.bind( document );
             var $$ = document.querySelectorAll.bind( document );
