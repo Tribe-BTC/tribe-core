@@ -1,7 +1,7 @@
 //modules used on Core
 const bitcoin = require('bitcoinjs-lib');
 const nostr = require('nostr-tools');
-const tapscript = require('tapscript);
+const tapscript = require('tapscript');
 
 var $ = document.querySelector.bind( document );
             var $$ = document.querySelectorAll.bind( document );
