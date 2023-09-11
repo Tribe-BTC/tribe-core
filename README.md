@@ -21,10 +21,10 @@ Tribe will offer bitpacs based on several inputs, including NOSTR npubs, btc wal
 
 ## Status Software
 
-This software is in Proof of Concept, but is adding support for:
+This software is in Proof of Concept, we are adding:
 
-- Bitcoin Network via Testnet
-- Xverse, Hiro, Unisat
-- Ordinals protocol
-- Bitpack verification
+- Support for Bitcoin wallet addresses as WL inputs for bitpac creation
+- Support for Xverse, Hiro, and Unisat wallets, allowing sign in and access gating
+- Support for Ordinals protocol asset based inputs for bitpac creation (inscriptions and rare sats)
+- Support for Bitcheck verification
   
